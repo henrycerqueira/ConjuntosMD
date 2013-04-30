@@ -100,20 +100,44 @@ namespace ConjuntosMD
 
             for (int i = 0; i < B.lista.Count; i++)
             {
-                for (int j = 0; j < ConjC.lista.Count; j++)
+                if (ConjC.lista.Contains(B.lista[i]))
                 {
-                    if (ConjC.lista.Contains(B.lista[i]) == true)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        ConjC.Adicionar(B.lista[i]);
-                    }
+                    break;
+                }
+                else
+                {
+                    ConjC.Adicionar(B.lista[i]);
                 }
             }
 
             Console.Write("\n\nUNIAO - IMPRESSAO DO CONJUNTO C");
+
+            ConjC.Imprimir(ConjC);
+        }
+        
+        public void Diferenca(Conjunto<T> B)
+        {
+            Conjunto<T> ConjC = new Conjunto<T>();
+
+            for (int i = 0; i < lista.Count; i++)
+            {
+                ConjC.Adicionar(lista[i]);
+            }
+
+            for (int i = 0; i < B.lista.Count; i++)
+            {
+                if (ConjC.lista.Contains(B.lista[i]) == true)
+                {
+                    ConjC.lista.Remove(B.lista[i]);
+                    break;
+                }
+                else
+                {
+                    ConjC.Adicionar(B.lista[i]);
+                }
+            }
+
+            Console.Write("\n\DIFERENÇA - IMPRESSAO DO CONJUNTO C");
 
             ConjC.Imprimir(ConjC);
         }
